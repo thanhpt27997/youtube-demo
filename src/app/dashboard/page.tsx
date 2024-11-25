@@ -16,6 +16,7 @@ const Dashboard = () => {
 
   const getListVideos = useCallback(async () => {
     const accessToken = session?.accessToken as string
+    console.log('accessToken=', accessToken)
     if (accessToken) {
       const res = await callApi<IVideo[]>({ accessToken, type: TypeDataApis.GET_ACTIVITIES })
       setData(res)
@@ -24,6 +25,7 @@ const Dashboard = () => {
   }, [session])
 
   useEffect(() => {
+    console.log('trigger effect getListVideos')
     if (session) {
       setLoading(true)
       getListVideos()

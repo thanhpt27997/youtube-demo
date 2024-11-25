@@ -40,6 +40,7 @@ export async function POST(req) {
 }
 
 async function getActivitiesReport(accessToken) {
+  console.log('trigger api getActivitiesReport')
   const activityResponse = await youtube.activities.list({
     part: ['snippet', 'contentDetails'],
     access_token: accessToken,
