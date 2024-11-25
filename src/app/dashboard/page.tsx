@@ -13,7 +13,7 @@ import { CustomSession } from "@/interface/session.interface";
 const Dashboard = () => {
   const [data, setData] = useState<IVideo[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const { data: session } = useSession() as { data: CustomSession };
+  const { data: session, status } = useSession() as { data: CustomSession, status: string };
 
   const getListVideos = useCallback(async () => {
     const accessToken = session?.accessToken ?? session?.user?.accessToken as string
@@ -25,7 +25,6 @@ const Dashboard = () => {
   }, [session])
 
   useEffect(() => {
-    console.log('trigger effect getListVideos')
     if (session) {
       setLoading(true)
       getListVideos()
@@ -33,17 +32,25 @@ const Dashboard = () => {
   }, [session, getListVideos])
 
 
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      window.location.href = '/'
+    }
+  }, [status])
+
+
   return (
     <div className={styles.container}>
       <h2>Danh sách videos</h2>
       <Loading visible={loading} />
-      {data.length > 0 && (
-        <div className={styles.list}>
-          {data.map((video: IVideo) => <VideoCard video={video} key={video.id} />)}
-        </div>
-      )}
-
-    </div>
+      {
+        data.length > 0 && (
+          <div className={styles.list}>
+            {data.map((video: IVideo) => <VideoCard video={video} key={video.id} />)}
+          </div>
+        )
+      }
+    </div >
   );
 };
 

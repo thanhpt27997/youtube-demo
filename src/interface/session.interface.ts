@@ -6,6 +6,6 @@ export interface CustomSession extends Session {
     name?: string;
     email?: string;
     picture?: string
-    accessToken?: string
+    accessToken?: string,
   }
 }

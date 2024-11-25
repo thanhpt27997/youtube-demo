@@ -17,7 +17,7 @@ export default function VideoDetail() {
   const [loading, setLoading] = useState<boolean>(false)
 
   const { id: videoId } = useParams()
-  const { data: session } = useSession() as { data: CustomSession };
+  const { data: session, status } = useSession() as { data: CustomSession, status: string };
 
   const accessToken = session?.accessToken ?? session?.user?.accessToken as string
 
@@ -37,6 +37,12 @@ export default function VideoDetail() {
       getVideo(accessToken)
     }
   }, [accessToken, getVideo])
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      window.location.href = '/'
+    }
+  }, [status])
 
   if (!video || !Object.values(video).length) {
     return null
