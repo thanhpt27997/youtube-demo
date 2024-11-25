@@ -230,7 +230,10 @@ export default function Comments({ videoId, channelId }: { videoId: string, chan
       },
     })
 
-    setTimeout(() => getVideoComments(accessToken), 2000)
+    setTimeout(() => {
+      getVideoComments(accessToken)
+      setLoading(false)
+    }, 2000)
 
   }, [accessToken, getVideoComments])
 
@@ -243,7 +246,6 @@ export default function Comments({ videoId, channelId }: { videoId: string, chan
 
   return (
     <div className={`${styles.container} ${loading ? styles.loadingEffect : ''} `}>
-      <h3>{comments.length} bình luận</h3>
       <ActionComment onOk={onComment}
         authorDisplayName={session?.user?.name ?? ''}
         authorProfileImageUrl={session?.user?.image ?? session.user.picture ?? ''}
