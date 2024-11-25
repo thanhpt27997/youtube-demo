@@ -1,0 +1,109 @@
+.container {
+  margin-top: 24px;
+
+  .comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 0 24px;
+    padding: 0 0 24px;
+
+    &:not(:last-child) {
+
+      border-bottom: 1px solid #d9d9d9;
+    }
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+  }
+
+  .content {
+    margin-left: 16px;
+
+    p {
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 400;
+      margin: 0 0 16px;
+
+      >span {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+
+  }
+
+  .contextAndReply,
+  .reply {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    span {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    button {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 500;
+      background: #d9d9d9;
+      padding: 4px 8px;
+      border: none;
+      border-radius: 12px;
+      margin-left: 16px;
+      transition: all 0.2s ease-in-out;
+
+      &.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @media(min-width: 1168px) {
+        &:hover {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  .reply:not(:last-child) {
+    margin: 0 0 16px;
+    padding: 0 0 16px;
+  }
+
+  .replies {
+    width: 100%;
+    margin-top: 32px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+
+  .toggleReplies {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 16px;
+    margin-left: 0 !important;
+  }
+
+  .loadingEffect {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  h2 {
+    font-size: 32px;
+    line-height: 48px;
+    margin: 0 0 24px;
+  }
+}
+
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
