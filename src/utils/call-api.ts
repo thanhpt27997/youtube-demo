@@ -13,6 +13,7 @@ export async function callApi<T>({
 }): Promise<T> {
 	try {
 		const host = process.env.NEXT_PUBLIC_API_HOST + "/api/youtube"
+		console.log('host=', host)
 		const config: AxiosRequestConfig = {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
@@ -21,7 +22,7 @@ export async function callApi<T>({
 		};
 
 		const requestBody = body ? { type, data: body, accessToken } : { type, accessToken };
-		const response = await axios.post<T[]>(host, requestBody, config);
+		const response = await axios.post<T[]>('/api/youtube', requestBody, config);
 		return response.data as T;
 	} catch (error) {
 		console.log("API call error:", error);

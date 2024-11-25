@@ -3,10 +3,21 @@
 import { signOut, useSession } from 'next-auth/react';
 import styles from './styles.module.scss'
 import Image from 'next/image';
+import { Session } from 'next-auth';
 
+
+interface CustomSession extends Session {
+  user: {
+    image?: string;
+    name?: string;
+    email?: string;
+    picture?: string
+
+  }
+}
 export default function Header() {
 
-  const { data: session } = useSession()
+  const { data: session } = useSession() as { data: CustomSession };
 
   const handleLogout = async () => {
     await signOut({
@@ -18,10 +29,12 @@ export default function Header() {
     return null
   }
 
+  const srcSet = session.user?.image ?? session.user?.picture ?? ''
+
   return (
     <div className={styles.header}>
       <h1>
-        <Image src={session.user?.image ?? ''} width={64} height={64} alt={session.user?.name ?? ''} />
+        <Image src={srcSet} width={64} height={64} alt={session.user?.name ?? ''} />
         <a href="/dashboard">
           Kênh của bạn
         </a>
