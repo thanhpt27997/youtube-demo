@@ -2,7 +2,7 @@ export function parseDatePublished(publishedAt: string | Date): string {
   const now = new Date();
   const publishedDate = new Date(publishedAt);
 
-  const diffInSeconds = Math.floor((+now - +publishedDate) / 1000); // Sử dụng dấu "+" để ép kiểu thành số
+  const diffInSeconds = Math.floor((+now - +publishedDate) / 1000);
 
   const minutes = 60;
   const hours = minutes * 60;

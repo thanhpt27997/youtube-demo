@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ClientSessionProvider from "./session-provider/page";
+import ClientSessionProvider from "../components/session-provider/page";
 import Header from "@/components/header";
 
 

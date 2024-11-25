@@ -1,6 +1,4 @@
-// app/ClientSessionProvider.tsx
-
-'use client'; // Đảm bảo đây là Client Component
+'use client';
 
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";

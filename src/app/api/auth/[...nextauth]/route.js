@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.YOUTUBE_CLIENT_ID,
@@ -20,21 +20,15 @@ export const authOptions = {
     async jwt({ token, account }) {
       if (account) {
         token.accessToken = account.access_token;
-        token.expires = Date.now() + 86400000;
-      }
-      if (token.expires && Date.now() > token.expires) {
-        // window.location.href = '/'
+        token.expires = Date.now() + 3600 * 1000;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.accessToken = token.accessToken;
-      }
+      session.user = token;
       return session;
     },
   },
-};
+});
 
-const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

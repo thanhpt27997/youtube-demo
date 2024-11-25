@@ -3,10 +3,10 @@ import NextAuth from "next-auth";
 
 declare module "next-auth" {
   interface Session {
-    accessToken?: string; // Thêm thuộc tính accessToken vào Session
+    accessToken?: string;
   }
 
   interface JWT {
-    accessToken?: string; // Thêm thuộc tính accessToken vào JWT
+    accessToken?: string;
   }
 }
