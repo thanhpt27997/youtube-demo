@@ -246,7 +246,7 @@ export default function Comments({ videoId, channelId }: { videoId: string, chan
       <h3>{comments.length} bình luận</h3>
       <ActionComment onOk={onComment}
         authorDisplayName={session?.user?.name ?? ''}
-        authorProfileImageUrl={session?.user?.image ?? ''}
+        authorProfileImageUrl={session?.user?.image ?? session.user.picture ?? ''}
       />
       {comments.length > 0 && comments.map((comment: IComment) => {
         const {

@@ -1,6 +1,11 @@
 .container {
   margin-top: 24px;
 
+  &.loadingEffect {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   .comment {
     display: flex;
     justify-content: flex-start;
@@ -102,8 +107,5 @@
     margin-left: 0 !important;
   }
 
-  .loadingEffect {
-    opacity: 0.5;
-    pointer-events: none;
-  }
+
 }
