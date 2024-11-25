@@ -8,15 +8,15 @@ import { TypeDataApis } from "@/enum/type-data-api.enum";
 import { IVideo } from "@/interface/video.interface";
 import styles from './styles.module.scss'
 import Loading from "@/components/loading";
+import { CustomSession } from "@/interface/session.interface";
 
 const Dashboard = () => {
   const [data, setData] = useState<IVideo[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const { data: session } = useSession();
+  const { data: session } = useSession() as { data: CustomSession };
 
   const getListVideos = useCallback(async () => {
-    const accessToken = session?.accessToken as string
-    console.log('accessToken=', accessToken)
+    const accessToken = session?.accessToken ?? session?.user?.accessToken as string
     if (accessToken) {
       const res = await callApi<IVideo[]>({ accessToken, type: TypeDataApis.GET_ACTIVITIES })
       setData(res)

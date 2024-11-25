@@ -5,9 +5,10 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styles from './styles.module.scss'
+import { CustomSession } from "@/interface/session.interface";
 
 const SignIn = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession() as { data: CustomSession };
   const router = useRouter();
 
   useEffect(() => {

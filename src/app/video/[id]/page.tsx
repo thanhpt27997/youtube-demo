@@ -10,15 +10,16 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Loading from "@/components/loading";
+import { CustomSession } from "@/interface/session.interface";
 
 export default function VideoDetail() {
   const [video, setVideo] = useState<IVideo | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   const { id: videoId } = useParams()
-  const { data: session } = useSession();
+  const { data: session } = useSession() as { data: CustomSession };
 
-  const accessToken = session?.accessToken;
+  const accessToken = session?.accessToken ?? session?.user?.accessToken as string
 
   const getVideo = useCallback(async (accessToken: string) => {
     const video = await callApi<IVideo>({

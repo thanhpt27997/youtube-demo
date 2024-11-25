@@ -10,6 +10,7 @@ import { parseDatePublished } from '@/utils/time'
 import ActionComment from '../action-comment'
 
 import styles from './styles.module.scss'
+import { CustomSession } from '@/interface/session.interface'
 
 function Comment({
   comment,
@@ -146,9 +147,11 @@ export default function Comments({ videoId, channelId }: { videoId: string, chan
   const [comments, setComments] = useState<IComment[]>([])
   const [currentCommentReplied, setCurrentCommentReplied] = useState<IComment | undefined>(undefined)
   const [loading, setLoading] = useState<boolean>(false)
-  const { data: session } = useSession()
+  const { data: session } = useSession() as { data: CustomSession };
 
-  const accessToken = useMemo(() => session?.accessToken, [session])
+
+
+  const accessToken = useMemo(() => session?.accessToken ?? session?.user?.accessToken as string, [session])
 
   const getVideoComments = useCallback(async (accessToken: string) => {
     const videoComments = await callApi<IComment[]>({

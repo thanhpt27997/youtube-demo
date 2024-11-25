@@ -3,18 +3,8 @@
 import { signOut, useSession } from 'next-auth/react';
 import styles from './styles.module.scss'
 import Image from 'next/image';
-import { Session } from 'next-auth';
+import { CustomSession } from '@/interface/session.interface';
 
-
-interface CustomSession extends Session {
-  user: {
-    image?: string;
-    name?: string;
-    email?: string;
-    picture?: string
-
-  }
-}
 export default function Header() {
 
   const { data: session } = useSession() as { data: CustomSession };
